@@ -15,7 +15,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
+import static org.assertj.core.api.Assertions.*;
 /**
  *
  * @author lars
@@ -94,5 +94,8 @@ public class TestCache extends TestCase {
 
         assertTrue(cacheddata != cacheddata3);
         assertTrue(cacheddata2 == cacheddata3);
+	
+	assertThat(cacheddata).isNotEqualTo(cacheddata3);
+	assertThat(cacheddata2).isEqualTo(cacheddata3);
     }
 }
