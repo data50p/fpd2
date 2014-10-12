@@ -91,6 +91,23 @@
 	</dependency>    
 	
     </dependencies>
+
+   <distributionManagement>
+	<repository>
+	    <id>data50p</id>
+	    <name>data50p-releases</name>
+	    <url>http://server.femtioprocent.com:8041/artifactory/ext-release-local</url>
+	</repository>
+	<snapshotRepository>
+	    <id>data50p</id>
+	    <name>data50p-snapshots</name>
+	    <url>http://server.femtioprocent.com:8041/artifactory/ext-snapshot-local</url>
+	</snapshotRepository>
+    </distributionManagement>
+
+
+
+
     <properties>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
