@@ -24,7 +24,7 @@ public class AjaxReceiver_Fpd2Data extends AjaxReceiver {
      * Notify that a user is editing a Program Unit. Return result if somebody else is editing it.
      * 
      * How deep is the rabbit hole?<p/>
-     *  The blue pill: See esrEditTool.jsp, function notifyServerNow<br/>
+     *  The blue pill: See ajaxExample.jsp, function notifyServerNow<br/>
      *  The red pill: AjaxTransmitter.java, dispatchAjax.jsp, and AjaxDispatcher.java<br/>
      * 
 

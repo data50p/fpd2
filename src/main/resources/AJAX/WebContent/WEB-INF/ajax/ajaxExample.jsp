@@ -42,7 +42,7 @@ var ordinal = 0;
 
 if ( enableAjax ) {
 	// This ajax service check if page is edited by other user or if the data was saved by other user
-	var esrAjaxTransmitter = new AjaxTransmitter("FpdData", "editEvent");
+	var myAjaxTransmitter = new AjaxTransmitter("FpdData", "editEvent");
 }
 
 function notifyServerNow() {
@@ -60,7 +60,7 @@ function notifyServerNow() {
             "subop": subop,
             "savedVersion": document.getElementById('savedVersion').value
     };
-    esrAjaxTransmitter.send(argJ, function(ajaxResult) {
+    myAjaxTransmitter.send(argJ, function(ajaxResult) {
         if ( ajaxResult != null ) {
             // compare the savedVersion when this page was loaded (mySavedVersion) and the current from the app-server.
             var mySavedVersion = document.getElementById('savedVersion').value;
@@ -93,7 +93,7 @@ function notifyServerStopNow() {
             "subop": "",
             "savedVersion": document.getElementById('savedVersion').value
     };
-    esrAjaxTransmitter.send(argJ, function(ajaxResult) {
+    myAjaxTransmitter.send(argJ, function(ajaxResult) {
         notifyServerajaxTimeout = 0;
         if ( ajaxResult != null ) {
             SCM.SetExtra(ajaxResult.text, ajaxResult.popup);
