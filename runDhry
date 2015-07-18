@@ -1,1 +1,1 @@
-java -cp target/fpd2-1.0-SNAPSHOT.jar com.femtioprocent.fpd2.dhry.Dhry
+java -cp target/fpd2-*.jar com.femtioprocent.fpd2.dhry.Dhry "$@"

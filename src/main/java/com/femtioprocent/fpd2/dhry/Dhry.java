@@ -5,6 +5,14 @@ import java.io.InputStreamReader;
 
 public class Dhry extends GlobalVariables implements Runnable {
 
+    private static String f(long n) {
+	return "" + n;
+    }
+
+    private static String f(int n) {
+	return f((long)n);
+    }
+
     long Number_Of_Runs = 100000000;
 
     ExitObserver exitObserver;
@@ -87,7 +95,7 @@ public class Dhry extends GlobalVariables implements Runnable {
 
         Msg.out.println("total time: " + total_time + "ms");
 	Msg.out.println("Result: " + Number_Of_Runs * 1000 / total_time
-			+ " dhrystone/sec.");
+			+ " dhrystone/sec." + "    " + (Number_Of_Runs * 0.001 / total_time));
 
     }
 
@@ -281,29 +289,53 @@ public class Dhry extends GlobalVariables implements Runnable {
     }
 
     public static void main(String argv[]) {
+	long nn = 100000000;
+	int nl = 5;
+	boolean noAsk = false;
+	if ( argv.length > 1 ) {
+	    nn = Long.parseLong(argv[0]);
+	    nl = Integer.parseInt(argv[1]);
+	    noAsk = true;
+	} else if ( argv.length > 0 ) {
+	    nn = Long.parseLong(argv[0]);
+	    nl = 1;
+	    noAsk = true;
+	}
 	Msg.out = System.err;
+
+	Dhry dh = new Dhry();
 
 	Msg.out.println("Dhrystone Benchmark, Version 2.1 (Language: Java)");
 	Msg.out.println();
-	Msg.out.print("Please give the number of runs through the benchmark (100000000): ");
+	Msg.out.println("java com.femtioprocent.fpd2.dhry.Dhry 100000000 5");
+	Msg.out.println();
+	Msg.out.print("Please give the number of runs through the benchmark ("
+		+ f(dh.Number_Of_Runs)
+		+ "): ");
 	Msg.out.flush();
-	Dhry dh = new Dhry();
 	try {
-	    int nl = 5;
-	    
 	    BufferedReader rdr
 		= new BufferedReader(new InputStreamReader(System.in));
-	    String li = rdr.readLine();
+	    String li;
+	    if ( noAsk )
+		li = null;
+	    else
+		li = rdr.readLine();
 	    if ( li == null || li.length() == 0 )
-		;// dh.Number_Of_Runs = ;
+		dh.Number_Of_Runs = nn;
 	    else
 		dh.Number_Of_Runs = Long.valueOf(li).longValue();
 
-	    Msg.out.print("Please give the number of loops through the benchmark (5): ");
+	    Msg.out.print("Please give the number of loops through the benchmark ("
+		    + f(nl)
+		    + "): ");
 	    Msg.out.flush();
-	    li = rdr.readLine();
+	    if ( noAsk )
+		li =null;
+	    else
+		li = rdr.readLine();
 	    if ( li == null || li.length() == 0 )
-		nl = 5;
+		;
 	    else
 		nl = Integer.valueOf(li).intValue();
 
